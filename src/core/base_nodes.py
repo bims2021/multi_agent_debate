@@ -20,7 +20,17 @@ class BaseNode(ABC):
     def __call__(self, state: DebateState) -> DebateState:
         """Make node callable by LangGraph"""
         self.logger.info(f"Executing node: {self.name}")
-        return self.execute(state)
+        
+        # Log state transition
+        from utils.loggers import log_state_transition
+        log_state_transition(self.name, state)
+        
+        result = self.execute(state)
+        
+        # Log after execution
+        self.logger.debug(f"Node {self.name} completed")
+        
+        return result
 
 class BaseAgentNode(BaseNode):
     """Base class for agent nodes with common functionality"""

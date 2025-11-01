@@ -10,25 +10,20 @@ class RoundControllerNode(BaseNode):
     def execute(self, state: DebateState) -> DebateState:
         """Control round progression and check completion
         
-        A round is considered complete when all agents have spoken once.
-        When we return to the first agent (index 0), we've completed a full round.
+        For 8 rounds with 2 agents:
+        - Each speaking turn is 1 round
+        - Total of 8 speaking turns = 4 per agent
+        - Round increments after EACH agent speaks
         """
         current_round = state['current_round']
         max_rounds = state['max_rounds']
-        current_agent_index = state['current_agent_index']
         
-        # Check if we just completed a round (all agents have spoken)
-        # A round completes when we've cycled back to the first agent
-        if current_agent_index == 0 and len(state['full_transcript']) > 0:
-            # We're back at the first agent and have transcript entries
-            # Check if the last entry was from the last agent in order
-            last_entry = state['full_transcript'][-1]
-            last_agent_id = last_entry.get('agent_id', '')
-            
-            # If last speaker was the last agent in order, round is complete
-            if last_agent_id == state['agent_order'][-1]:
-                current_round += 1
-                self.logger.info(f"Round {current_round} completed")
+        # Count the number of arguments made so far
+        # Each argument = 1 round
+        total_arguments = len(state['full_transcript'])
+        
+        # Update current_round to match total arguments
+        current_round = total_arguments
         
         # Check if debate is complete
         debate_complete = current_round >= max_rounds

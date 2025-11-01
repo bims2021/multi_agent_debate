@@ -1,0 +1,19 @@
+2025-11-01 21:02:24,995 - STATE - State transition logging initialized
+2025-11-01 21:02:26,751 - STATE - Node: user_input | Round: 0 | Current Agent: unknown | Phase: initialization
+2025-11-01 21:02:32,813 - STATE - Node: agent_scientist | Round: 0 | Current Agent: scientist | Phase: debate
+2025-11-01 21:02:34,149 - STATE - Node: round_controller | Round: 0 | Current Agent: philosopher | Phase: debate
+2025-11-01 21:02:34,151 - STATE - Node: agent_philosopher | Round: 1 | Current Agent: philosopher | Phase: debate
+2025-11-01 21:02:35,551 - STATE - Node: round_controller | Round: 1 | Current Agent: scientist | Phase: debate
+2025-11-01 21:02:35,554 - STATE - Node: agent_scientist | Round: 2 | Current Agent: scientist | Phase: debate
+2025-11-01 21:02:36,942 - STATE - Node: round_controller | Round: 2 | Current Agent: philosopher | Phase: debate
+2025-11-01 21:02:36,943 - STATE - Node: agent_philosopher | Round: 3 | Current Agent: philosopher | Phase: debate
+2025-11-01 21:02:38,303 - STATE - Node: round_controller | Round: 3 | Current Agent: scientist | Phase: debate
+2025-11-01 21:02:38,306 - STATE - Node: agent_scientist | Round: 4 | Current Agent: scientist | Phase: debate
+2025-11-01 21:02:39,744 - STATE - Node: round_controller | Round: 4 | Current Agent: philosopher | Phase: debate
+2025-11-01 21:02:39,748 - STATE - Node: agent_philosopher | Round: 5 | Current Agent: philosopher | Phase: debate
+2025-11-01 21:02:40,778 - STATE - Node: round_controller | Round: 5 | Current Agent: scientist | Phase: debate
+2025-11-01 21:02:40,780 - STATE - Node: agent_scientist | Round: 6 | Current Agent: scientist | Phase: debate
+2025-11-01 21:02:41,962 - STATE - Node: round_controller | Round: 6 | Current Agent: philosopher | Phase: debate
+2025-11-01 21:02:41,966 - STATE - Node: agent_philosopher | Round: 7 | Current Agent: philosopher | Phase: debate
+2025-11-01 21:02:42,916 - STATE - Node: round_controller | Round: 7 | Current Agent: scientist | Phase: debate
+2025-11-01 21:02:42,921 - STATE - Node: judge | Round: 8 | Current Agent: scientist | Phase: judgment

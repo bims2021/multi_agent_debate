@@ -66,8 +66,12 @@ class AgentNodeFactory:
                 # Move to next agent in rotation
                 next_agent_index = (state['current_agent_index'] + 1) % len(state['agent_order'])
                 
-                # Log the argument
+                # Log the argument to transcript
                 self.logger.info(f"[Round {current_round + 1}] {agent_name}: {argument[:100]}...")
+                
+                # Also log to dedicated transcript file
+                from utils.loggers import log_argument
+                log_argument(current_round + 1, agent_name, argument)
                 
                 return {
                     **state,

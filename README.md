@@ -73,16 +73,17 @@ example:
 
  Available agents: scientist, philosopher, economist, lawyer
    Default: scientist, philosopher
-   Enter agent names separated by commas (or press Enter for defaults):
-   > 
+   Enter agent names separated by commas (or press Enter for defaults): 
 
-✓ Selected agents: scientist, philosopher
-✓ Debate initialized with 2 agents
-✓ Maximum rounds: 3
+ Selected agents: scientist, philosopher
+ Debate initialized with 2 agents
+ Maximum rounds: 3
 
 [Debate proceeds...]
 
  WINNER: Philosopher
+
+
 
 ┌─────────────────────────────────────────────────────────────┐
 │                    Debate System Flow                        │
@@ -164,7 +165,8 @@ Example Argument:
 
 **Output & Logs**:
 debate_logs/
-├── debate_transcript_20250131_143022.log     # Full transcript
+├── debate_transcript_20250131_143022.log    
+|-- debate_transcript_final                   # Full transcript
 ├── state_transitions_20250131_143022.log     # Debug log
 └── debate_report_20250131_143055.json        # Comprehensive report
 
