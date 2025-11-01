@@ -166,6 +166,7 @@ Example Argument:
 "From a deontological perspective, AI regulation respects human autonomy by ensuring transparency, which is a fundamental right regardless of efficiency considerations."
 
 **Output & Logs**:
+
 debate_logs/
 ├── debate_transcript_20250131_143022.log    
 |-- debate_transcript_final                   # Full transcript
