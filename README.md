@@ -176,31 +176,69 @@ Maximum rounds: 3
     ┌──────────────┐
     │    Judge     │  ← Evaluate & declare winner
     └──────────────┘
-```
 
----
+**Core Components**:
+**1. State Management (core/state.py)**:
 
-##  Output & Logs
+TypedDict-based state for type safety
+Tracks debate progress, agent memories, and results
+Immutable state updates for predictability
 
-All results and transcripts are automatically stored in `debate_logs/`:
+**2. Graph Builder (core/graph_builder.py)**
 
-```
+Constructs LangGraph state machine
+Conditional routing between nodes
+Dynamic agent node creation
+
+**3. Agent System**:
+
+Base Classes: BaseDebateAgent, LLMAgent
+Factory Pattern: AgentNodeFactory for dynamic creation
+Registry: AgentRegistry for agent management
+Specialized Agents: Scientist, Philosopher, Economist, Lawyer
+
+**4. Validation Layer (utils/validators.py)**:
+
+Argument quality checking
+Novelty detection (prevents repetition)
+Substance validation (filters weak arguments)
+
+**5. Control Nodes**:
+
+UserInputNode: Handles initialization
+RoundControllerNode: Manages turn-taking
+JudgeNode: Evaluates and declares winner
+MemoryManagerNode: Optimizes context retention
+
+**Agent Personas**:
+ **Scientist**:
+Expertise: Empirical evidence, data-driven analysis
+Style: Pragmatic, analytical, evidence-based
+Focus: Measurable outcomes, risk assessment, reproducibility
+Example Argument:
+
+"Research indicates that AI regulation could reduce bias in automated decision-making by 40%, based on controlled studies in healthcare and finance sectors."
+
+ **Philosopher**:
+Expertise: Ethics, logical consistency, moral frameworks
+Style: Principled, conceptually rigorous
+Focus: Long-term implications, human values, ethical principles
+Example Argument:
+
+"From a deontological perspective, AI regulation respects human autonomy by ensuring transparency, which is a fundamental right regardless of efficiency considerations."
+
+**Output & Logs**:
 debate_logs/
-├── debate_transcript_20250131_143022.log
-├── debate_transcript_final
-├── state_transitions_20250131_143022.log
-└── debate_report_20250131_143055.json
-```
+├── debate_transcript_20250131_143022.log    
+|-- debate_transcript_final                   # Full transcript
+├── state_transitions_20250131_143022.log     # Debug log
+└── debate_report_20250131_143055.json        # Comprehensive report
 
----
-
-##  Extending the System
-
-### ➕ Adding a New Agent
-
-**1. Create the agent class** (`agents/historian.py`):
-```python
+ **Extending the System**:
+**Adding a New Agent**:
+**1.Create agent class (agents/historian.py)**:
 from agents.llm_agent import LLMAgent
+
 
 class HistorianAgent(LLMAgent):
     def __init__(self, agent_id: str = "historian", config: dict = None):
@@ -212,32 +250,22 @@ class HistorianAgent(LLMAgent):
         }
         merged_config = {**default_config, **(config or {})}
         super().__init__(agent_id, merged_config)
-```
 
-**2. Register the agent** (`config/settings.py`):
-```python
-DEFAULT_AGENTS_CONFIG["historian"] = AgentConfig(
-    name="Historian",
-    persona="Historical Analyst",
-    description="Expert in historical patterns",
-    system_prompt="..."
+**2.Register in settings (config/settings.py)**:
+DEFAULT_AGENTS_CONFIG['historian'] = AgentConfig(
+    name='Historian',
+    persona='Historical Analyst',
+    description='Expert in historical patterns',
+    system_prompt='...'
 )
-```
-
-**3. Register in the Agent Registry** (`agents/agent_registry.py`):
-```python
+**3.Register in registry (agents/agent_registry.py)**:
 def register_default_agents(self):
     from agents.historian import HistorianAgent
     self.register_agent("historian", HistorianAgent)
     # ... existing agents
-```
 
----
-
-###  Custom Validation Rules
-
-Extend `ArgumentValidator` in `utils/validators.py`:
-```python
+**Custom Validation Rules**:
+**Extend ArgumentValidator in utils/validators.py**: 
 def is_valid_argument(self, argument: str, used_arguments: List[str]) -> bool:
     return (
         self.has_minimum_length(argument)
@@ -250,13 +278,8 @@ def is_valid_argument(self, argument: str, used_arguments: List[str]) -> bool:
 def custom_rule(self, argument: str) -> bool:
     # Custom validation logic
     return True
-```
-
----
-
-###  Creating Custom Nodes
-
-```python
+**Creating Custom Nodes**:
+**Extend BaseNode**:
 from core.base_nodes import BaseNode
 
 class CustomNode(BaseNode):
@@ -266,36 +289,49 @@ class CustomNode(BaseNode):
     def execute(self, state: DebateState) -> DebateState:
         # Your custom logic here
         return state
-```
+        
 
----
+**Troubleshooting**:
 
-##  Troubleshooting
+**Common Issues**:
 
-| Issue | Solution |
-|-------|-----------|
-| **Graphviz not found** | Install Graphviz via system package and ensure `pygraphviz` is installed |
-| **API rate limits** | Reduce debate rounds, switch to `gpt-3.5-turbo`, or add retry logic |
-| **Memory issues** | Reduce `max_rounds`, implement memory pruning, or enable context management |
+1.Graphviz not found:
 
----
+    Install Graphviz system package
 
-##  Getting Help
+    Ensure pygraphviz Python package is installed
 
-- Review generated log files in `debate_logs/`
-- Verify API key permissions and usage quotas
-- Ensure all dependencies are correctly installed
+2.API rate limits:
 
----
+    Reduce number of debate rounds
 
-##  License
+    Use gpt-3.5-turbo for all components
 
-This project is licensed under the **MIT License** – see the [LICENSE](LICENSE) file for details.
+    Implement request retry logic
 
----
+3.Memory issues:
 
-##  Acknowledgments
+    Reduce max_rounds in configuration
 
-- Built with **LangGraph** for stateful workflow orchestration  
-- Uses **LangChain** for LLM integration  
-- Inspired by **formal debate structures** and **multi-agent systems**
+    Implement memory pruning for long debates
+
+    Use context window management
+
+**Getting Help**:
+
+    Check generated log files for error details
+
+    Verify API key permissions and quotas
+
+    Ensure all dependencies are correctly installed   
+
+ **License**:
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+**Acknowledgments**:
+
+    Built with LangGraph for stateful workflows
+
+    Uses LangChain for LLM integration
+
+    Inspired by formal debate structures and multi-agent systems
