@@ -114,6 +114,7 @@ example:
     └──────────────┘
 
 **Core Components**:
+
 **1. State Management (core/state.py)**:
 
 TypedDict-based state for type safety
