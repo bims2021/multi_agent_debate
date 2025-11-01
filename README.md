@@ -180,6 +180,7 @@ debate_logs/
 
 from agents.llm_agent import LLMAgent
 
+
 class HistorianAgent(LLMAgent):
     def __init__(self, agent_id: str = "historian", config: dict = None):
         default_config = {
@@ -195,6 +196,7 @@ class HistorianAgent(LLMAgent):
 **2.Register in settings (config/settings.py)**:
 
 DEFAULT_AGENTS_CONFIG['historian'] = AgentConfig(
+
     name='Historian',
     persona='Historical Analyst',
     description='Expert in historical patterns',
