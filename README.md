@@ -177,6 +177,7 @@ debate_logs/
 **Adding a New Agent**:
 
 **1.Create agent class (agents/historian.py)**:
+
 from agents.llm_agent import LLMAgent
 
 class HistorianAgent(LLMAgent):
@@ -192,6 +193,7 @@ class HistorianAgent(LLMAgent):
         super().__init__(agent_id, merged_config)
 
 **2.Register in settings (config/settings.py)**:
+
 DEFAULT_AGENTS_CONFIG['historian'] = AgentConfig(
     name='Historian',
     persona='Historical Analyst',
@@ -199,6 +201,7 @@ DEFAULT_AGENTS_CONFIG['historian'] = AgentConfig(
     system_prompt='...'
 )
 **3.Register in registry (agents/agent_registry.py)**:
+
 def register_default_agents(self):
     from agents.historian import HistorianAgent
     self.register_agent('historian', HistorianAgent)
@@ -206,7 +209,8 @@ def register_default_agents(self):
 
 **Custom Validation Rules**:
 
-**Extend ArgumentValidator in utils/validators.py**: 
+**Extend ArgumentValidator in utils/validators.py**:
+
 def is_valid_argument(self, argument: str, used_arguments: List[str]) -> bool:
     return (
         self.has_minimum_length(argument) and
@@ -219,6 +223,7 @@ def is_valid_argument(self, argument: str, used_arguments: List[str]) -> bool:
 def custom_rule(self, argument: str) -> bool:
     # Your custom validation logic
     return True
+    
 **Creating Custom Nodes**:
 
 **Extend BaseNode**:
