@@ -1,0 +1,24 @@
+## Environment and Config
+# Sensitive API keys
+.env
+*.env
+
+## Byte-compiled / Optimized files
+__pycache__/
+*.pyc
+*.pyd
+*.pyo
+*.egg-info/
+
+
+
+## Editors and IDEs (Optional, but recommended)
+.vscode/ # VS Code settings
+.idea/   # PyCharm/IntelliJ settings
+
+## Virtual Environments
+# Exclude the environment folder itself if it's in the root
+venv/
+env/
+# Anaconda environments
+/debate_env/

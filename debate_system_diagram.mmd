@@ -1,0 +1,24 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	user_input(user_input)
+	agent_scientist(agent_scientist)
+	agent_philosopher(agent_philosopher)
+	round_controller(round_controller)
+	judge(judge)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> user_input;
+	agent_philosopher --> round_controller;
+	agent_scientist --> round_controller;
+	round_controller -.-> agent_philosopher;
+	round_controller -.-> agent_scientist;
+	round_controller -.-> judge;
+	user_input --> agent_scientist;
+	judge --> __end__;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc
