@@ -167,18 +167,19 @@ Example Argument:
 
 **Output & Logs**:
 
+'''bash
 debate_logs/
 ├── debate_transcript_20250131_143022.log    
 |-- debate_transcript_final                   # Full transcript
 ├── state_transitions_20250131_143022.log     # Debug log
 └── debate_report_20250131_143055.json        # Comprehensive report
-
+'''
  **Extending the System**:
  
 **Adding a New Agent**:
 
 **1.Create agent class (agents/historian.py)**:
-
+'''python
 from agents.llm_agent import LLMAgent
 
 
@@ -193,9 +194,11 @@ class HistorianAgent(LLMAgent):
         }
         merged_config = {**default_config, **(config or {})}
         super().__init__(agent_id, merged_config)
+'''
 
 **2.Register in settings (config/settings.py)**:
 
+'''python
 DEFAULT_AGENTS_CONFIG['historian'] = AgentConfig(
 
     name='Historian',
@@ -203,17 +206,21 @@ DEFAULT_AGENTS_CONFIG['historian'] = AgentConfig(
     description='Expert in historical patterns',
     system_prompt='...'
 )
+'''
+
 **3.Register in registry (agents/agent_registry.py)**:
 
+'''python
 def register_default_agents(self):
     from agents.historian import HistorianAgent
     self.register_agent('historian', HistorianAgent)
     # ... existing agents
+    '''
 
 **Custom Validation Rules**:
 
 **Extend ArgumentValidator in utils/validators.py**:
-
+'''python
 def is_valid_argument(self, argument: str, used_arguments: List[str]) -> bool:
     return (
         self.has_minimum_length(argument) and
@@ -226,10 +233,12 @@ def is_valid_argument(self, argument: str, used_arguments: List[str]) -> bool:
 def custom_rule(self, argument: str) -> bool:
     # Your custom validation logic
     return True
-    
+'''
+
 **Creating Custom Nodes**:
 
 **Extend BaseNode**:
+'''python
 from core.base_nodes import BaseNode
 
 class CustomNode(BaseNode):
@@ -239,7 +248,7 @@ class CustomNode(BaseNode):
     def execute(self, state: DebateState) -> DebateState:
         # Your custom logic
         return state
-        
+'''        
 
 **Troubleshooting**:
 
