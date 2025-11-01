@@ -227,15 +227,15 @@ Example Argument:
 
 "From a deontological perspective, AI regulation respects human autonomy by ensuring transparency, which is a fundamental right regardless of efficiency considerations."
 
-**Output & Logs**:
+##**Output & Logs**:
 debate_logs/
 ├── debate_transcript_20250131_143022.log    
 |-- debate_transcript_final                   # Full transcript
 ├── state_transitions_20250131_143022.log     # Debug log
 └── debate_report_20250131_143055.json        # Comprehensive report
 
- **Extending the System**:
-**Adding a New Agent**:
+##**Extending the System**:
+###**Adding a New Agent**:
 **1.Create agent class (agents/historian.py)**:
 from agents.llm_agent import LLMAgent
 
@@ -251,21 +251,21 @@ class HistorianAgent(LLMAgent):
         merged_config = {**default_config, **(config or {})}
         super().__init__(agent_id, merged_config)
 
-**2.Register in settings (config/settings.py)**:
+###**2.Register in settings (config/settings.py)**:
 DEFAULT_AGENTS_CONFIG['historian'] = AgentConfig(
     name='Historian',
     persona='Historical Analyst',
     description='Expert in historical patterns',
     system_prompt='...'
 )
-**3.Register in registry (agents/agent_registry.py)**:
+###**3.Register in registry (agents/agent_registry.py)**:
 def register_default_agents(self):
     from agents.historian import HistorianAgent
     self.register_agent("historian", HistorianAgent)
     # ... existing agents
 
-**Custom Validation Rules**:
-**Extend ArgumentValidator in utils/validators.py**: 
+##**Custom Validation Rules**:
+###**Extend ArgumentValidator in utils/validators.py**: 
 def is_valid_argument(self, argument: str, used_arguments: List[str]) -> bool:
     return (
         self.has_minimum_length(argument)
@@ -278,8 +278,8 @@ def is_valid_argument(self, argument: str, used_arguments: List[str]) -> bool:
 def custom_rule(self, argument: str) -> bool:
     # Custom validation logic
     return True
-**Creating Custom Nodes**:
-**Extend BaseNode**:
+##**Creating Custom Nodes**:
+###**Extend BaseNode**:
 from core.base_nodes import BaseNode
 
 class CustomNode(BaseNode):
@@ -291,9 +291,9 @@ class CustomNode(BaseNode):
         return state
         
 
-**Troubleshooting**:
+##**Troubleshooting**:
 
-**Common Issues**:
+###**Common Issues**:
 
 1.Graphviz not found:
 
@@ -317,7 +317,7 @@ class CustomNode(BaseNode):
 
     Use context window management
 
-**Getting Help**:
+##**Getting Help**:
 
     Check generated log files for error details
 
@@ -325,10 +325,11 @@ class CustomNode(BaseNode):
 
     Ensure all dependencies are correctly installed   
 
- **License**:
+##**License**:
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-**Acknowledgments**:
+
+##**Acknowledgments**:
 
     Built with LangGraph for stateful workflows
 
