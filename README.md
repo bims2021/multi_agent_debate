@@ -1,5 +1,6 @@
 #  Modular Debate Simulation System
 
+
 A sophisticated **LangGraph-based system** that simulates structured debates between AI agents with distinct professional personas.  
 It features dynamic agent selection, memory management, and automated judgment — all within a modular, extensible architecture.
 
