@@ -148,6 +148,7 @@ JudgeNode: Evaluates and declares winner
 MemoryManagerNode: Optimizes context retention
 
 **Agent Personas**:
+
  **Scientist**:
 Expertise: Empirical evidence, data-driven analysis
 Style: Pragmatic, analytical, evidence-based
@@ -172,7 +173,9 @@ debate_logs/
 └── debate_report_20250131_143055.json        # Comprehensive report
 
  **Extending the System**:
+ 
 **Adding a New Agent**:
+
 **1.Create agent class (agents/historian.py)**:
 from agents.llm_agent import LLMAgent
 
@@ -202,6 +205,7 @@ def register_default_agents(self):
     # ... existing agents
 
 **Custom Validation Rules**:
+
 **Extend ArgumentValidator in utils/validators.py**: 
 def is_valid_argument(self, argument: str, used_arguments: List[str]) -> bool:
     return (
@@ -216,6 +220,7 @@ def custom_rule(self, argument: str) -> bool:
     # Your custom validation logic
     return True
 **Creating Custom Nodes**:
+
 **Extend BaseNode**:
 from core.base_nodes import BaseNode
 
@@ -265,6 +270,7 @@ class CustomNode(BaseNode):
  **License**:
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
 **Acknowledgments**:
 
     Built with LangGraph for stateful workflows
