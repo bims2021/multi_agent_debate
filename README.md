@@ -129,7 +129,7 @@ You’ll be prompted to enter a topic and select agents:
 ```
 Enter topic for debate: Should AI be regulated by governments?
 
-Available agents: scientist, philosopher, economist, lawyer
+Available agents: scientist, philosopher
 Default: scientist, philosopher
 
 Enter agent names separated by commas (or press Enter for defaults):
@@ -195,7 +195,7 @@ Dynamic agent node creation
 Base Classes: BaseDebateAgent, LLMAgent
 Factory Pattern: AgentNodeFactory for dynamic creation
 Registry: AgentRegistry for agent management
-Specialized Agents: Scientist, Philosopher, Economist, Lawyer
+Specialized Agents: Scientist, Philosopher
 
 **4. Validation Layer (utils/validators.py)**:
 
