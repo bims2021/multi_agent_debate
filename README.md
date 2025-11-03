@@ -177,55 +177,6 @@ Maximum rounds: 3
     │    Judge     │  ← Evaluate & declare winner
     └──────────────┘
 
-**Core Components**:
-**1. State Management (core/state.py)**:
-
-TypedDict-based state for type safety
-Tracks debate progress, agent memories, and results
-Immutable state updates for predictability
-
-**2. Graph Builder (core/graph_builder.py)**
-
-Constructs LangGraph state machine
-Conditional routing between nodes
-Dynamic agent node creation
-
-**3. Agent System**:
-
-Base Classes: BaseDebateAgent, LLMAgent
-Factory Pattern: AgentNodeFactory for dynamic creation
-Registry: AgentRegistry for agent management
-Specialized Agents: Scientist, Philosopher
-
-**4. Validation Layer (utils/validators.py)**:
-
-Argument quality checking
-Novelty detection (prevents repetition)
-Substance validation (filters weak arguments)
-
-**5. Control Nodes**:
-
-UserInputNode: Handles initialization
-RoundControllerNode: Manages turn-taking
-JudgeNode: Evaluates and declares winner
-MemoryManagerNode: Optimizes context retention
-
-**Agent Personas**:
- **Scientist**:
-Expertise: Empirical evidence, data-driven analysis
-Style: Pragmatic, analytical, evidence-based
-Focus: Measurable outcomes, risk assessment, reproducibility
-Example Argument:
-
-"Research indicates that AI regulation could reduce bias in automated decision-making by 40%, based on controlled studies in healthcare and finance sectors."
-
- **Philosopher**:
-Expertise: Ethics, logical consistency, moral frameworks
-Style: Principled, conceptually rigorous
-Focus: Long-term implications, human values, ethical principles
-Example Argument:
-
-"From a deontological perspective, AI regulation respects human autonomy by ensuring transparency, which is a fundamental right regardless of efficiency considerations."
 
 **Output & Logs**:
 debate_logs/
